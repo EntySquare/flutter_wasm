@@ -1,4 +1,4 @@
-# flutter_wasm
+# flu_wasm
 
 A new Flutter project.
 

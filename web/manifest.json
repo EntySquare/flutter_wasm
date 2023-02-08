@@ -1,6 +1,6 @@
 {
-    "name": "flutter_wasm",
-    "short_name": "flutter_wasm",
+    "name": "flu_wasm",
+    "short_name": "flu_wasm",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

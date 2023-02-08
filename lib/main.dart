@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:wasm/wasm.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
 
   // This widget is the root of your application.
   @override
@@ -25,13 +26,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -49,7 +50,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TextEditingController inputController = TextEditingController();
   int _counter = 0;
+  dynamic square;
+  num input = 12;
+  num res = 0;
+
+  @override
+  void initState() {
+    load();
+    super.initState();
+  }
+
+  Future<void> load() async {
+    var data = await rootBundle.load('assets/hellowasm.wasm');
+    print(data.buffer.asUint8List());
+    print(data.buffer.asUint8List().length);
+    var inst =
+        wasmModuleCompileSync(data.buffer.asUint8List()).builder().build();
+    square = inst.lookupFunction('fbin');
+    // print(square(input));
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -96,7 +117,20 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
+            TextFormField(
+              controller: inputController,
+              onFieldSubmitted: (value) {
+                setState(() {
+                  input = int.parse(value);
+                  res = square(input) as num;
+                });
+              },
+              decoration: const InputDecoration(
+                hintText: '请输入一个数',
+              ),
+            ),
+            Text('输入数字的平方 = $res'),
+            Text(
               'You have pushed the button this many times:',
             ),
             Text(

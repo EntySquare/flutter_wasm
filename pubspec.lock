@@ -81,6 +81,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_wasm:
+    dependency: "direct main"
+    description:
+      path: flutter_wasm
+      ref: HEAD
+      resolved-ref: "73ed11bf4622b389e94088c96b932ba5666a3321"
+      url: "https://github.com/dart-lang/wasm.git"
+    source: git
+    version: "0.0.1"
   lints:
     dependency: transitive
     description:
