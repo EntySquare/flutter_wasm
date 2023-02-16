@@ -11,8 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   wasm:
-    git:
-      url: https://github.com/EntySquare/wasm.git
+    path:  wasm
 
 
 dev_dependencies:
