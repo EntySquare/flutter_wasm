@@ -166,9 +166,11 @@ packages:
   wasm:
     dependency: "direct main"
     description:
-      path: wasm
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "063579eef028cbfacda77733754754097f9a206d"
+      url: "https://github.com/EntySquare/wasm.git"
+    source: git
     version: "0.2.0-dev"
 sdks:
   dart: ">=2.18.0 <3.0.0"
