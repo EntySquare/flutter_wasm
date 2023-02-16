@@ -12,17 +12,13 @@ dependencies:
     sdk: flutter
   wasm:
     git:
-      url: https://github.com/dart-lang/wasm.git
-      path: wasm
+      url: git@github.com:EntySquare/wasm.git
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   lints: ^2.0.0
-
-dependency_overrides:
-  wasm:
-    path: ./wasm
 
 flutter:
   plugin:
